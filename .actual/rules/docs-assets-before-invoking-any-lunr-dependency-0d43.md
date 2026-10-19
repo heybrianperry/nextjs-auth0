@@ -1,0 +1,41 @@
+---
+version: 2
+name: docs-assets-before-invoking-any-lunr-dependency-0d43
+description: "Lunr Search Index and Query Parser Adoption: Before Invoking Any Lunr Dependency Developers"
+metadata:
+  actual:
+    adr_id: 0d43bee6-d560-48b0-a051-f3f64495244c
+    status: accepted
+    candidate_group_id: 0c86c4c8-50ef-4b9e-b5d2-5a9c569fd2f1
+    evidence:
+      source: deep
+  scope:
+    root: .
+    paths:
+      - docs/assets/**
+---
+
+# Lunr Search Index and Query Parser Adoption: Before Invoking Any Lunr Dependency Developers
+
+Scope: applies to `docs/assets/**`.
+
+These rules are ALWAYS ACTIVE for static documentation search interfaces requiring client-side index querying and in-memory token-based text search evaluation using lunr QueryParser.
+
+### Rules
+
+- **R-LUNR-001** MUST: Before invoking any lunr dependency APIs, developers MUST discover the repository dependency manifest and lock artifact to resolve and verify the exact locked version.
+
+### Verify
+
+```bash
+# Discover and run the project test runner to execute unit and integration suites validating client search index generation.
+# Discover and run the project static analysis and linting suite to verify compliance with query parser and lexer invocation standards.
+```
+
+**Accept when:**
+- Search query execution returns expected ranked results without emitting pipeline or version mismatch warnings.
+- All discovered automated test suites pass without regressions.
+
+<enforcement>
+Claude Code MUST NOT skip or defer verification. Automated continuous integration build checks and peer code review enforce client search implementation and bundle configuration.
+</enforcement>
